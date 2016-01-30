@@ -37,14 +37,14 @@ public class RequestInput {
 			// increased by 1 and add element
 			newStringArray = Arrays.copyOf(elements, elements.length + 1);
 			// Set the last element to supplied String addString
-			newStringArray[elements.length - 1] = addString;
+			newStringArray[elements.length] = addString;
 		} else {
 			// Supplied array does not contain any elements yet
 			newStringArray = new String[1];
 			// Set the first/last and only element to supplied String addString
 			newStringArray[0] = addString;
 		}
-		return elements;
+		return newStringArray;
 	}
 
 	/**
@@ -99,14 +99,17 @@ public class RequestInput {
 				input = scanner.nextLine();
 				// Check that the input String is one character long
 				if (input.length() < 1) {
-					throw new IllegalArgumentException("too few chars");
+					System.out.println("UNDER:" + input.length());
+					throw new IllegalArgumentException("too few chars, need at least one.");
 				} else if (input.length() > 1) {
-					throw new IllegalArgumentException("too many chars");
+					System.out.println("OVER:" + input.length());
+					throw new IllegalArgumentException("too many chars - should only have (" + input.charAt(0) + ")");
 				}
-				// Convert the String into a char value
 				character = input.charAt(0);
+				// Convert the String into a char value
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
+				// System.out.println("Print e);
 				e.getMessage();
 			}
 			return character;
